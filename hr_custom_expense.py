@@ -86,8 +86,6 @@ class ouc_expense_sheet(models.Model):
     def create(self, create_values):
         seq = self.env['ir.sequence'].next_by_code('expensesequence')
         create_values["c_seq_number"] = seq
-        # if create_values["c_paathshala"]:
-        #   create_values.update({'c_approval_manager':self.env['hr.employee'].browse(7401).id})
         res = super(ouc_expense_sheet, self).create(create_values)
         return res
 
@@ -97,9 +95,8 @@ class ouc_expense_sheet(models.Model):
         self.env['mail.template'].browse(template.id).send_mail(self.id)
         template = self.env['ir.model.data'].get_object('nf_hr_custom', 'example_email_template_id')
         self.env['mail.template'].browse(template.id).send_mail(self.id)
-        if self.c_paathshala == False:
-             template = self.env['ir.model.data'].get_object('nf_hr_custom', 'example_email_template_id5')
-             self.env['mail.template'].browse(template.id).send_mail(self.id)
+        template = self.env['ir.model.data'].get_object('nf_hr_custom', 'example_email_template_id5')
+        self.env['mail.template'].browse(template.id).send_mail(self.id)
         self.c_is_submit=True
 
     @api.depends('c_phy_received')
