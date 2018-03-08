@@ -37,7 +37,6 @@ class ouc_expense_custom(models.Model):
 
     def expense_button(self):
         if not self.refuse_reason:
-            print ">>>>>>>>>>>>>>>>>>>",self.refuse_reason
             raise exceptions.ValidationError(_('Mention Refuse Reason'))
         else:
             self.sudo().message_post(_("Your Expense %s has been refused.<br/><ul class=o_timeline_tracking_value_list><li>Reason<span> : </span><span class=o_timeline_tracking_value>%s</span></li></ul>") %(self.name,self.refuse_reason))
