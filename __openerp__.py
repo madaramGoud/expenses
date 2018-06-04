@@ -3,7 +3,7 @@
 	'version' : '0.1',
 	'category' : 'expense',
 	'description' : """
-		This module is created to handle Expenses in Nowfloats
+		This module is created to handle Expenses
 	""",
     'author': 'OpenErp4you',
     'depends': ['base_setup','hr','hr_expense', 'hr_contract','mail'],
