@@ -48,7 +48,7 @@
                 <xpath expr="//field[@name='analytic_account_id']" position="replace">
                     <field name="analytic_account_id" options="{'no_create_edit':True, 'no_create':True,'no_open':True}" string="Cost Centre" groups="purchase.group_purchase_user,hr_expense.group_hr_expense_manager"/>
                     <field name="refuse_reason" readonly="1"/>
-                    <field name="refuse_details" readonly="1"/>
+<!--                     <field name="refuse_details" readonly="1"/> -->
                 </xpath>
                 <xpath expr="//label[@for='quantity']" position="attributes">
                     <attribute name="invisible">1</attribute>
