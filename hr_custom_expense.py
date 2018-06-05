@@ -37,7 +37,6 @@ class ouc_expense_custom(models.Model):
 
     def expense_button(self):
         if not self.refuse_reason:
-            print ">>>>>>>>>>>>>>>>>>>",self.refuse_reason
             raise exceptions.ValidationError(_('Mention Refuse Reason'))
         else:
             self.sudo().message_post(_("Your Expense %s has been refused.<br/><ul class=o_timeline_tracking_value_list><li>Reason<span> : </span><span class=o_timeline_tracking_value>%s</span></li></ul>") %(self.name,self.refuse_reason))
@@ -86,8 +85,6 @@ class ouc_expense_sheet(models.Model):
     def create(self, create_values):
         seq = self.env['ir.sequence'].next_by_code('expensesequence')
         create_values["c_seq_number"] = seq
-        # if create_values["c_paathshala"]:
-        #   create_values.update({'c_approval_manager':self.env['hr.employee'].browse(7401).id})
         res = super(ouc_expense_sheet, self).create(create_values)
         return res
 
@@ -97,9 +94,8 @@ class ouc_expense_sheet(models.Model):
         self.env['mail.template'].browse(template.id).send_mail(self.id)
         template = self.env['ir.model.data'].get_object('nf_hr_custom', 'example_email_template_id')
         self.env['mail.template'].browse(template.id).send_mail(self.id)
-        if self.c_paathshala == False:
-             template = self.env['ir.model.data'].get_object('nf_hr_custom', 'example_email_template_id5')
-             self.env['mail.template'].browse(template.id).send_mail(self.id)
+        template = self.env['ir.model.data'].get_object('nf_hr_custom', 'example_email_template_id5')
+        self.env['mail.template'].browse(template.id).send_mail(self.id)
         self.c_is_submit=True
 
     @api.depends('c_phy_received')
